@@ -1,4 +1,6 @@
-import { Routes } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivationEnd, Event, Router, Routes } from '@angular/router';
 import { Cat1 } from './cat1/cat1';
 import { Bla } from './cat1/bla/bla';
 import { Bli } from './cat1/bli/bli';
@@ -7,9 +9,22 @@ import { Cat2 } from './cat2/cat2';
 import { Foo } from './cat2/foo/foo';
 import { Bar } from './cat2/bar/bar';
 
-export const ROUTE_SAVE_KEY = 'SaveRoute';
+const ROUTE_SAVE_KEY = 'SaveRoute';
 const ID_CAT1_PAGE = 'cat1_page';
 const ID_CAT2_PAGE = 'cat2_page';
+
+export function initRouting() {
+  inject(Router).events.pipe(takeUntilDestroyed()).subscribe((event: Event) => {
+    if (event instanceof ActivationEnd) {
+      const routeConfig = event.snapshot.routeConfig;
+      const saveKey = routeConfig?.data?.[ROUTE_SAVE_KEY];
+      const page = routeConfig?.path;
+      if (saveKey !== undefined && page !== undefined) {
+        localStorage.setItem(saveKey, page);
+      }
+    }
+  });
+}
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'cat1' },
