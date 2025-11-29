@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -8,5 +8,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrl: './category.scss',
 })
 export class Category {
-  readonly pages = input<string[]>();
+  readonly pages: string[];
+  constructor(activatedRoute: ActivatedRoute) {
+    this.pages = activatedRoute.snapshot.routeConfig?.children
+      ?.filter(c => c.path !== '').map(c => c.path!) ?? [];
+  }
 }
