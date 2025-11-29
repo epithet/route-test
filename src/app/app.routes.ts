@@ -8,10 +8,12 @@ import { Foo } from './cat2/foo/foo';
 import { Bar } from './cat2/bar/bar';
 
 export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'cat1' },
   {
     path: 'cat1',
     component: Cat1,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'bla' },
       { path: 'bla', component: Bla },
       { path: 'bli', component: Bli },
       { path: 'blu', component: Blu },
@@ -21,6 +23,7 @@ export const routes: Routes = [
     path: 'cat2',
     component: Cat2,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'foo' },
       { path: 'foo', component: Foo },
       { path: 'bar', component: Bar },
     ],
