@@ -1,0 +1,12 @@
+main {
+  display: flex;
+
+  nav {
+    background-color: lightgray;
+  }
+
+  article {
+    flex-grow: 1;
+    background-color: lightblue;
+  }
+}
