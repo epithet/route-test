@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Category } from './category';
+import { NavbarContent } from './navbar-content';
 
-describe('Category', () => {
-  let component: Category;
-  let fixture: ComponentFixture<Category>;
+describe('NavbarContent', () => {
+  let component: NavbarContent;
+  let fixture: ComponentFixture<NavbarContent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Category]
+      imports: [NavbarContent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Category);
+    fixture = TestBed.createComponent(NavbarContent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

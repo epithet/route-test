@@ -1,8 +1,0 @@
-<nav class="nav text-bg-info">
-  @for (page of pages(); track page) {
-    <a class="nav-link" [routerLink]="page" routerLinkActive="active">{{page}}</a>
-  }
-</nav>
-<div class="p-3">
-  <router-outlet />
-</div>
