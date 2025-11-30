@@ -1,6 +1,6 @@
 <app-navbar-content>
-  <a class="nav-link" routerLink="foo" routerLinkActive="active">Foo</a>
-  <a class="nav-link" routerLink="bar" routerLinkActive="active">Bar</a>
+  <a class="nav-link" (click)="navigateTo('foo')" routerLink="foo" routerLinkActive="active">Foo</a>
+  <a class="nav-link" (click)="navigateTo('bar')" routerLink="bar" routerLinkActive="active">Bar</a>
 </app-navbar-content>
 
 <router-outlet />

@@ -1,7 +1,7 @@
 <app-navbar-content>
-  <a class="nav-link" routerLink="bla" routerLinkActive="active">Bla</a>
-  <a class="nav-link" routerLink="bli" routerLinkActive="active">Bli</a>
-  <a class="nav-link" routerLink="blu" routerLinkActive="active">Blu</a>
+  <a class="nav-link" (click)="navigateTo('bla')" routerLink="bla" routerLinkActive="active">Bla</a>
+  <a class="nav-link" (click)="navigateTo('bli')" routerLink="bli" routerLinkActive="active">Bli</a>
+  <a class="nav-link" (click)="navigateTo('blu')" routerLink="blu" routerLinkActive="active">Blu</a>
 </app-navbar-content>
 
 <router-outlet />
