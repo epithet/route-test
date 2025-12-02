@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivationEnd, Event, Router, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivationEnd, Event, ResolveFn, Router, Routes } from '@angular/router';
 import { Category } from './category/category';
 import { Bla } from './cat1/bla/bla';
 import { Bli } from './cat1/bli/bli';
@@ -25,11 +25,15 @@ export function initRouting() {
   });
 }
 
+const pagesResolver: ResolveFn<string[]> = (route: ActivatedRouteSnapshot) =>
+  route.routeConfig?.children?.filter(c => c.path !== '').map(c => c.path!) ?? [];
+
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'cat1' },
   {
     path: 'cat1',
     component: Category,
+    resolve: { pages: pagesResolver },
     children: [
       { path: '', pathMatch: 'full',
         redirectTo: () => localStorage.getItem(ID_CAT1_PAGE) ?? 'bla' },
@@ -41,6 +45,7 @@ export const routes: Routes = [
   {
     path: 'cat2',
     component: Category,
+    resolve: { pages: pagesResolver },
     children: [
       { path: '', pathMatch: 'full',
         redirectTo: () => localStorage.getItem(ID_CAT2_PAGE) ?? 'foo' },
